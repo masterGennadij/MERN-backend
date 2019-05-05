@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
-const path = require('path');
+const MONGO_URI = require('./global').MONGO_URI;
 
-require('dotenv').config({ path: path.resolve(process.cwd(), './config/.env') });
-
-const db = process.env.MONGO_URI;
+const db = MONGO_URI;
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, { useNewUrlParser: true });
+    await mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true });
 
     console.log('MongoDB connected');
   } catch (error) {
