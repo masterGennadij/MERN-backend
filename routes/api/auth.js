@@ -18,7 +18,7 @@ router.get('/', authMiddleware, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     return res.json({ user });
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     return res.status(500).send('Server error');
   }
 });
@@ -74,7 +74,7 @@ router.post(
         return res.json({ token });
       });
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
       return res.status(500).send('Server error');
     }
   }
